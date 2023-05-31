@@ -9,6 +9,7 @@ using namespace std;
 #define SORT_ARR //сортировка массива из RANDOM или UNIQ_RANDOM по возрастанию
 #define DECIMAL_BIN//перевод десятичного числа в двоичное
 #define DECIMAL_HEX//перевод десятичного числа в шестнадцатеричное
+#define REPEAT_DEC//подсчитать количество повторений чисел в случайном массиве
 
 void main(){
 	setlocale(LC_ALL, "Russian");
@@ -131,4 +132,31 @@ void main(){
 	}
 	cout << endl;
 #endif
+#ifdef REPEAT_DEC
+	const int count_dec = 10;
+	int arr1[count_dec] = {};
+	for (int i = 0; i < n; i++) {
+		arr1[i] = rand() % 5;
+		cout<<arr1[i]<<tab;
+	}
+	cout << endl;
+	for (int i = 0; i < n; i++) {
+		bool met_before = false;
+		for (int j = 0; j < i; j++) {
+			if (arr1[i] == arr1[j]) {
+				met_before = true;
+				break;
+			}
+		}
+		if (met_before) continue;
+		int count = 0;
+		for (int j = i + 1; j < n; j++) {
+			if (arr1[i] == arr1[j]){
+				 count++;
+			}
+		}
+		if (count) cout << "Значение " << arr1[i] << " повторяется " << count << " раз"<<endl;
+	}
+#endif
+
 }
